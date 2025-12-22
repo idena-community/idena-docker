@@ -5,6 +5,7 @@ A simple and lightweight Docker image to run an [Idena](https://idena.io/) node.
 ## 🚀 Usage
 
 Run this single command to start the node:
+
 **Note:** Please adjust the ports and volume paths to fit your specific needs.
 
 ```bash
