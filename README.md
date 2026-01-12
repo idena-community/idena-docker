@@ -26,6 +26,29 @@ docker run -d \
 --rpcaddr=0.0.0.0: Allows accessing the node API from outside the container (required if you want to connect your Idena App to this node).
 --profile=server: Optimizes IPFS for VPS/Server usage (prevents local network scanning).
 
+## 🛡️ Security & VPS Configuration
+
+**⚠️ Important:** If you are running this node on a **VPS** or a server with a public IP address, **do not expose port 9009** to the internet.
+
+### For VPS Users
+1. **Modify your configuration** to bind the API port to `localhost` only.
+   - If using **Docker Compose**, update your `docker-compose.yml`:
+     ```yaml
+     ports:
+       - "127.0.0.1:9009:9009"
+     ```
+   - If using **Docker Run**, use `-p 127.0.0.1:9009:9009`.
+
+2. **Connect via SSH Tunnel**
+   To connect your local Idena App to your secure VPS node, run this command on your computer:
+   ```bash
+   ssh -L 9009:127.0.0.1:9009 user@your-vps-ip
+
+Then set your Idena Node settings to http://localhost:9009.
+
+### For Local/Home Users
+If running locally behind a home router, the default configuration (0.0.0.0:9009 or just -p 9009:9009) is safe and recommended for easier access.
+
 ## 🔑 API Key Management
 To connect your Idena client to this node, you will need the API Key.
 
